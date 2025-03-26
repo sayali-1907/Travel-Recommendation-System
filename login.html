@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background: #7e16d4;
+        }
+        .dashboard-container {
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .card {
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Travel Recommendation System</a>
+            <a href="/login" class="btn btn-light">Login</a>
+        </div>
+    </nav>
+    
+    <div class="container dashboard-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h3>Welcome Back!</h3>
+                    <p>Explore the best travel destinations based on your preferences.</p>
+                    <a href="/recommendation" class="btn btn-primary">Get Recommendations</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <canvas id="travelChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h3 class="text-center">Login</h3>
+                    <form action="/login" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <p class="text-center mt-2">Don't have an account? <a href="/signup">Sign Up</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const ctx = document.getElementById('travelChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Goa', 'Jaipur', 'Kerala', 'Leh', 'Taj Mahal'],
+                datasets: [{
+                    label: 'Popularity Score',
+                    data: [90, 85, 80, 75, 95],
+                    backgroundColor: 'rgba(126, 22, 212, 0.7)'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
